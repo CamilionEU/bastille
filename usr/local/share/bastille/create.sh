@@ -539,9 +539,7 @@ create_jail() {
             if [ -n "${IP6_ADDR}" ]; then
                     _ifconfig_inet6="${_ifconfig_inet6} ${IP6_ADDR}"
             fi
-            # Join together IPv4 and IPv6 parts of ifconfig
-            _ifconfig="${_ifconfig_inet} ${_ifconfig_inet6}"
-            bastille template "${NAME}" ${bastille_template_vnet} --arg BASE_TEMPLATE="${bastille_template_base}" --arg HOST_RESOLV_CONF="${bastille_resolv_conf}" --arg EPAIR="${uniq_epair}" --arg GATEWAY="${_gateway}" --arg GATEWAY6="${_gateway6}" --arg IFCONFIG="${_ifconfig}"
+            bastille template "${NAME}" ${bastille_template_vnet} --arg BASE_TEMPLATE="${bastille_template_base}" --arg HOST_RESOLV_CONF="${bastille_resolv_conf}" --arg EPAIR="${uniq_epair}" --arg GATEWAY="${_gateway}" --arg GATEWAY6="${_gateway6}" --arg IFCONFIG="${_ifconfig_inet}" --arg IFCONFIG6="${_ifconfig_inet6}"
         fi
     elif [ -n "${THICK_JAIL}" ]; then
         if [ -n "${bastille_template_thick}" ]; then
