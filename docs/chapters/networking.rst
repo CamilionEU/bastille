@@ -68,6 +68,23 @@ container interfaces as they are started and stopped. These interface names
 match the pattern `eXb_bastilleX`. Internally to the containers these
 interfaces are presented as `vnet0`.
 
+For DHCP server, you can use `DHCP` for the automatic assignation of Ipv4 directions
+ instead of an static one. 
+
+.. code-block:: shell
+
+  bastille create -V azkaban 13.1-RELEASE DHCP em0
+
+In the case of an IPv6 only Jail, you can use `SLAAC`.
+
+.. code-block:: shell
+
+  bastille create -V azkaban 13.1-RELEASE SLAAC em0
+
+In case of wanting both IPv4 and IPv6 you have to pass both options as a string.
+
+bastille create -V azkaban 13.1-RELEASE "DHCP SLAAC" em0
+
 VNET also requires a custom devfs ruleset. Create the file as needed on the
 host system:
 
